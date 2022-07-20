@@ -24,7 +24,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   tabsParent.addEventListener("click", (event) => {
     const target = event.target;
-    // event.preventDefault();
     if (target && target.classList.contains("tabheader__item")) {
       tabs.forEach((item, i) => {
         if (target == item) {

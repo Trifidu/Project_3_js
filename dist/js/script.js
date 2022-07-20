@@ -117,7 +117,7 @@ window.addEventListener("DOMContentLoaded", () => {
   hideTabContent();
   showTabContent();
   tabsParent.addEventListener("click", event => {
-    const target = event.target; // event.preventDefault();
+    const target = event.target;
 
     if (target && target.classList.contains("tabheader__item")) {
       tabs.forEach((item, i) => {
