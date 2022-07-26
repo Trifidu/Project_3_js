@@ -3046,14 +3046,16 @@ window.addEventListener("DOMContentLoaded", () => {
   let slideIndex = 1,
       offset = 0;
 
-  if (slideIndex < 10) {
-    total.textContent = `0${slides.length}`;
-    current.textContent = `0${slideIndex}`;
-  } else {
-    total.textContent = `${slides.length}`;
-    current.textContent = `${slideIndex}`;
+  function slideCounter(slide, index) {
+    if (index < 10) {
+      slide.textContent = `0${index}`;
+    } else {
+      slide.textContent = `${index}`;
+    }
   }
 
+  slideCounter(current, slideIndex);
+  slideCounter(total, slides.length);
   slidesField.style.width = 100 * slides.length + "%";
   slidesField.style.display = "flex";
   slidesField.style.transition = "0.5s all";
@@ -3106,6 +3108,11 @@ window.addEventListener("DOMContentLoaded", () => {
     dots.push(dot);
   }
 
+  function dotsChanges() {
+    dots.forEach(dot => dot.style.opacity = ".5");
+    dots[slideIndex - 1].style.opacity = 1;
+  }
+
   next.addEventListener("click", () => {
     if (offset == +width.slice(0, width.length - 2) * (slides.length - 1)) {
       offset = 0;
@@ -3121,14 +3128,8 @@ window.addEventListener("DOMContentLoaded", () => {
       slideIndex++;
     }
 
-    if (slideIndex < 10) {
-      current.textContent = `0${slideIndex}`;
-    } else {
-      current.textContent = `${slideIndex}`;
-    }
-
-    dots.forEach(dot => dot.style.opacity = ".5");
-    dots[slideIndex - 1].style.opacity = 1;
+    slideCounter(current, slideIndex);
+    dotsChanges();
   });
   prev.addEventListener("click", () => {
     if (offset == 0) {
@@ -3145,14 +3146,8 @@ window.addEventListener("DOMContentLoaded", () => {
       slideIndex--;
     }
 
-    if (slideIndex < 10) {
-      current.textContent = `0${slideIndex}`;
-    } else {
-      current.textContent = `${slideIndex}`;
-    }
-
-    dots.forEach(dot => dot.style.opacity = ".5");
-    dots[slideIndex - 1].style.opacity = 1;
+    slideCounter(current, slideIndex);
+    dotsChanges();
   });
   dots.forEach(dot => {
     dot.addEventListener("click", e => {
@@ -3160,14 +3155,8 @@ window.addEventListener("DOMContentLoaded", () => {
       slideIndex = slideTo;
       offset = +width.slice(0, width.length - 2) * (slideTo - 1);
       slidesField.style.transform = `translateX(-${offset}px)`;
-      dots.forEach(dot => dot.style.opacity = ".5");
-      dots[slideIndex - 1].style.opacity = 1;
-
-      if (slideIndex < 10) {
-        current.textContent = `0${slideIndex}`;
-      } else {
-        current.textContent = `${slideIndex}`;
-      }
+      slideCounter(current, slideIndex);
+      dotsChanges();
     });
   });
 });
