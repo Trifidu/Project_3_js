@@ -1,7 +1,6 @@
 {
   "name": "food",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -30,5 +29,14 @@
   },
   "dependencies": {
     "core-js": "^3.24.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Trifidu/Project_3_js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Trifidu/Project_3_js/issues"
+  },
+  "homepage": "https://github.com/Trifidu/Project_3_js#readme",
+  "description": ""
 }
