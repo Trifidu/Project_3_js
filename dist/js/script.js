@@ -3861,17 +3861,19 @@ window.addEventListener("DOMContentLoaded", () => {
   const result = document.querySelector(".calculating__result span");
   let sex, height, weight, age, ratio;
 
-  function localStorageData(key, value, options) {
-    if (localStorage.getItem(value)) {
-      key = localStorage.getItem(value);
-    } else {
-      key = options;
-      localStorage.setItem(value, key);
-    }
+  if (localStorage.getItem("sex")) {
+    sex = localStorage.getItem("sex");
+  } else {
+    sex = "female";
+    localStorage.setItem("sex", sex);
   }
 
-  localStorageData(sex, "sex", "female");
-  localStorageData(ratio, "ratio", 1.375);
+  if (localStorage.getItem("ratio")) {
+    ratio = localStorage.getItem("ratio");
+  } else {
+    ratio = 1.375;
+    localStorage.setItem("ratio", ratio);
+  }
 
   function initLocalSettings(selector, activeClass) {
     const elements = document.querySelectorAll(selector);
@@ -3932,11 +3934,23 @@ window.addEventListener("DOMContentLoaded", () => {
   getStaticInformation(".calculating__choose_big div", "calculating__choose-item_active");
 
   function getDynamicInformation(selector) {
-    const input = document.querySelector(selector);
+    const input = document.querySelector(selector); // input.addEventListener("input", () => {
+    //   if (input.value.match(/\D/g)) {
+    //     input.style.border = "1px solid red";
+    //     input.style.color = "red";
+    //   } else {
+    //     input.style.border = "none";
+    //     input.style.color = "black";
+    //   }
+
     input.addEventListener("input", () => {
       if (input.value.match(/\D/g)) {
+        input.value = input.value.replace(/[^\d]/g, "");
         input.style.border = "1px solid red";
         input.style.color = "red";
+      } else if (input.value.match(/\d/g)) {
+        input.style.border = "1px solid #54ED39";
+        input.style.color = "black";
       } else {
         input.style.border = "none";
         input.style.color = "black";
