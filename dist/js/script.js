@@ -4157,13 +4157,17 @@ const postData = async (url, data) => {
 };
 
 async function getResource(url) {
-  let res = await fetch(url);
+  try {
+    let res = await fetch(url);
 
-  if (!res.ok) {
-    throw new Error(`could not fetch ${url}, status: ${res.status}`);
+    if (!res.ok) {
+      throw new Error(`could not fetch ${url}, status: ${res.status}`);
+    }
+
+    return await res.json();
+  } catch (e) {
+    console.log("Json-Server is offline");
   }
-
-  return await res.json();
 }
 
 
