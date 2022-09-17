@@ -14,4 +14,4 @@
 
 ## Link
 
-[versel-Food](https://project-3-js-food.vercel.app)
+[vercel-Food](https://project-3-js-food.vercel.app)
